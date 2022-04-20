@@ -23,7 +23,7 @@ export const Main = () => {
     }
     return color;
   };
-  let totalColors = apiData?.length + 10 || 10;
+  // let totalColors = apiData?.length + 10 || 10;
   let array = useMemo(() => {
     return [...Array.from(Array(1000)).map(i => getRandomColor())];
   }, [apiData]);
@@ -34,7 +34,7 @@ export const Main = () => {
   }, []);
 
   const apiCall = () => {
-    console.log('page number is ' + page, totalColors);
+    console.log('page number is ' + page);
     dispatch(SetLoader());
     fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=10`)
       .then(response => response.json())
