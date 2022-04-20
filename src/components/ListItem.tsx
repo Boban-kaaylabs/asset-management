@@ -35,7 +35,7 @@ export const ListItem = () => {
 
   const apiCall = () => {
     dispatch(SetLoader());
-    fetch('https://api.npoint.io/f775f0f7e5ed2caa0f72')
+    fetch('https://api.npoint.io/dabfb684826450cc8232')
       .then(response => response.json())
       .then(responseJson => {
         console.log('response ', responseJson);

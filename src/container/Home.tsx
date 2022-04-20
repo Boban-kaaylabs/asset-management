@@ -4,9 +4,11 @@ import {
   BackgroundImage,
   Header,
   MyActivites,
+  Mytext,
   StrengthBar,
   Tabbar,
 } from '../components';
+import {Main} from '../components/additional';
 interface Props {
   name?: string;
   color?: string;
@@ -14,11 +16,12 @@ interface Props {
 export const Home: React.FC<Props> = () => {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <BackgroundImage />
+      {/* <BackgroundImage />
       <Header />
       <MyActivites />
       <StrengthBar name="Overall" />
-      <Tabbar />
+      <Tabbar /> */}
+      <Main />
     </View>
   );
 };
