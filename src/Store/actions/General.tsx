@@ -1,25 +1,58 @@
-import {END_DATE, LOADING, SET_DATA, START_DATE, REFRESH} from '../actionTypes';
-interface DateProps {
-  open: boolean;
-  date: Date | string;
-}
-const StartDate = (payload: DateProps) => ({
-  type: START_DATE,
+import {
+  AUTH,
+  LOADER,
+  TAB_CHANGE,
+  PREVIEW,
+  ASSET_FIELDS,
+  LOGIN,
+  TOGGLE_MODAL,
+  TABSET,
+  AXIOS_PARAMS,
+} from '../actionTypes';
+const SetAuth = (payload: any) => ({
+  type: AUTH,
   payload,
 });
-const EndDate = (payload: DateProps) => ({
-  type: END_DATE,
+const TabSelection = (payload: any) => ({
+  type: TABSET,
   payload,
 });
-const SetLoader = () => ({
-  type: LOADING,
-});
-const SetData = (payload: any) => ({
-  type: SET_DATA,
+const TabChange = (payload: number) => ({
+  type: TAB_CHANGE,
   payload,
 });
-const Refresh = () => ({
-  type: REFRESH,
+const SetLoader = (payload: boolean) => ({
+  type: LOADER,
+  payload,
 });
-
-export {StartDate, EndDate, SetLoader, SetData, Refresh};
+const SetLogin = (payload: boolean) => ({
+  type: LOGIN,
+  payload,
+});
+const SetShowPreview = (payload: boolean) => ({
+  type: PREVIEW,
+  payload,
+});
+const SetAssetFields = (payload: any) => ({
+  type: ASSET_FIELDS,
+  payload,
+});
+const ToggleModal = (payload: boolean) => ({
+  type: TOGGLE_MODAL,
+  payload,
+});
+const SetApiQuery = (payload: any) => ({
+  type: AXIOS_PARAMS,
+  payload,
+});
+export {
+  SetAuth,
+  TabChange,
+  SetLoader,
+  SetShowPreview,
+  SetAssetFields,
+  SetLogin,
+  ToggleModal,
+  TabSelection,
+  SetApiQuery,
+};

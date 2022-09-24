@@ -1,5 +1,9 @@
-export const START_DATE = 'START_DATE';
-export const END_DATE = 'END_DATE';
-export const LOADING = 'LOADING';
-export const SET_DATA = 'SET_DATA';
-export const REFRESH = 'REFRESH';
+export const TAB_CHANGE = 'TAB_CHANGE';
+export const LOADER = 'LOADER';
+export const PREVIEW = 'PREVIEW';
+export const ASSET_FIELDS = 'ASSET_FIELDS';
+export const LOGIN = 'LOGIN';
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const TABSET = 'TABSET';
+export const AUTH = 'AUTH';
+export const AXIOS_PARAMS = 'AXIOS_PARAMS';

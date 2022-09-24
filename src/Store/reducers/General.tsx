@@ -1,11 +1,24 @@
-import {END_DATE, LOADING, SET_DATA, START_DATE, REFRESH} from '../actionTypes';
+import {
+  AUTH,
+  TAB_CHANGE,
+  LOADER,
+  PREVIEW,
+  ASSET_FIELDS,
+  LOGIN,
+  TOGGLE_MODAL,
+  TABSET,
+  AXIOS_PARAMS,
+} from '../actionTypes';
 
 const initialstate = {
-  startdate: {open: false, date: 'Start Date'},
-  enddate: {open: false, date: 'End Date'},
-  loading: false,
-  data: null,
-  refresh: false,
+  tabs: [],
+  isLoading: false,
+  isLogged: false,
+  auth: '',
+  showPreview: true,
+  assetFields: [],
+  openModal: false,
+  axiosParams: {url: `asset-category/`},
 };
 
 type Action = {
@@ -24,33 +37,30 @@ const newNumber = generator();
 
 export default (state: any = initialstate, action: Action) => {
   switch (action.type) {
-    case START_DATE:
+    case AUTH:
+      return {...state, auth: action.payload};
+    case TABSET:
+      return {...state, tabs: action.payload};
+    case TAB_CHANGE:
       return {
         ...state,
-        startdate: action.payload,
+        tabs: state.tabs.map((tab: any) => {
+          if (action.payload !== tab.key) return {...tab, focused: false};
+          return {...tab, focused: true};
+        }),
       };
-    case END_DATE:
-      return {
-        ...state,
-        enddate: action.payload,
-      };
-    case LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case SET_DATA:
-      return {
-        ...state,
-        data: action.payload,
-        loading: false,
-      };
-    case REFRESH:
-      return {
-        ...state,
-        refresh: newNumber.next().value,
-      };
-
+    case LOADER:
+      return {...state, isLoading: action.payload};
+    case AXIOS_PARAMS:
+      return {...state, axiosParams: action.payload};
+    case LOGIN:
+      return {...state, isLogged: action.payload};
+    case PREVIEW:
+      return {...state, showPreview: action.payload};
+    case ASSET_FIELDS:
+      return {...state, assetFields: action.payload};
+    case TOGGLE_MODAL:
+      return {...state, openModal: action.payload};
     default:
       return state;
   }
