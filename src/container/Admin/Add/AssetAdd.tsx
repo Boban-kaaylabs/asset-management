@@ -107,30 +107,20 @@ export const AssetAdd = (props: Props) => {
         value,
       };
     });
+
+    const url = uri?.map(({data, ...rest}: any) => data);
+    console.log('URI', url);
+
     const result = {
       assetCategoryId: catId,
       values: res,
+      imageStrings: url,
     };
-    const formData = new FormData();
-    formData.append('assetVO', JSON.stringify(result));
-    formData.append('images', uri);
-    // fetch(`asset/`, {
-    //   method: 'POST',
-    //   body: formData,
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // });
+
     setAxiosParams({
       url: `asset/`,
-      method: 'POST',
-      data: formData,
-      formdata: true,
-      heading: {
-        headers: {
-          // 'Content-Type': 'multipart/form-data',
-        },
-      },
+      method: 'post',
+      data: result,
     });
   };
 
@@ -198,13 +188,14 @@ export const AssetAdd = (props: Props) => {
   const openImage = async (action: 'openCamera' | 'openPicker') => {
     const options = {
       //   cropping: true,
+      includeBase64: true,
     };
     try {
       const imgData: any = await PickImage({action, options});
       setUri([...uri, imgData]);
       console.log(imgData);
 
-      Alert.alert(imgData.path);
+      // Alert.alert(imgData.path);
     } catch (error) {
       console.log('ERROR:', error);
     } finally {
@@ -223,7 +214,7 @@ export const AssetAdd = (props: Props) => {
         scrollEnabled={outerScrollEnabled}
         contentContainerStyle={{paddingHorizontal: RFValue(20)}}>
         <View style={{paddingBottom: RFValue(20)}}>
-          {data.map((i: any) => {
+          {data?.map((i: any) => {
             return renderOptions(i);
           })}
         </View>
